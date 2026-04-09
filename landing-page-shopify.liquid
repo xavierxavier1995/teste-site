@@ -1,0 +1,360 @@
+{% comment %}
+Landing Page para Consultório Médico - Shopify Liquid Template
+Use como page customizada ou section em seu theme
+{% endcomment %}
+
+<style>
+  .consultorio-hero {
+    background: linear-gradient(to right, #eff6ff, #dbeafe);
+    padding: 80px 20px;
+    text-align: center;
+  }
+
+  .consultorio-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .consultorio-header {
+    background-color: #2563eb;
+    color: white;
+    padding: 16px 20px;
+  }
+
+  .consultorio-header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .consultorio-header h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .consultorio-header p {
+    margin: 0;
+    color: #dbeafe;
+  }
+
+  .consultorio-hero h2 {
+    font-size: 48px;
+    font-weight: bold;
+    color: #111827;
+    margin: 0 0 16px 0;
+  }
+
+  .consultorio-hero p {
+    font-size: 20px;
+    color: #374151;
+    margin: 0 0 32px 0;
+  }
+
+  .consultorio-form {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    padding: 32px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .consultorio-form h3 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #111827;
+    margin: 0 0 24px 0;
+  }
+
+  .consultorio-form input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+
+  .consultorio-form input:focus {
+    outline: none;
+    ring: 2px;
+    ring-color: #2563eb;
+    border-color: #2563eb;
+  }
+
+  .consultorio-form button {
+    width: 100%;
+    background-color: #2563eb;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .consultorio-form button:hover {
+    background-color: #1d4ed8;
+  }
+
+  .consultorio-success {
+    color: #059669;
+    font-weight: 600;
+    margin-top: 16px;
+  }
+
+  .consultorio-benefits {
+    padding: 80px 20px;
+    background-color: #f9fafb;
+  }
+
+  .consultorio-benefits h2 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #111827;
+    text-align: center;
+    margin: 0 0 64px 0;
+  }
+
+  .consultorio-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+
+  .consultorio-card {
+    background: white;
+    padding: 32px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .consultorio-card-icon {
+    width: 48px;
+    height: 48px;
+    color: #2563eb;
+    margin-bottom: 16px;
+  }
+
+  .consultorio-card h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #111827;
+    margin: 0 0 8px 0;
+  }
+
+  .consultorio-card p {
+    color: #4b5563;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .consultorio-cta-section {
+    background-color: #2563eb;
+    color: white;
+    border-radius: 8px;
+    padding: 48px;
+    text-align: center;
+  }
+
+  .consultorio-cta-section h3 {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0 0 16px 0;
+  }
+
+  .consultorio-cta-section p {
+    font-size: 18px;
+    margin: 0 0 24px 0;
+  }
+
+  .consultorio-cta-section button {
+    background-color: white;
+    color: #2563eb;
+    padding: 12px 32px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: inline-block;
+  }
+
+  .consultorio-cta-section button:hover {
+    background-color: #f3f4f6;
+  }
+
+  .consultorio-footer {
+    background-color: #111827;
+    color: white;
+    padding: 32px 20px;
+    text-align: center;
+  }
+
+  .consultorio-footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .consultorio-footer p {
+    margin: 8px 0;
+  }
+
+  .consultorio-footer-name {
+    margin-bottom: 8px;
+  }
+
+  .consultorio-footer-specialty {
+    color: #9ca3af;
+    margin-bottom: 16px;
+  }
+
+  .consultorio-footer-copy {
+    color: #6b7280;
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    .consultorio-header-content {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .consultorio-hero h2 {
+      font-size: 32px;
+    }
+
+    .consultorio-benefits h2 {
+      font-size: 28px;
+    }
+
+    .consultorio-cta-section {
+      padding: 32px 20px;
+    }
+
+    .consultorio-cta-section h3 {
+      font-size: 24px;
+    }
+  }
+</style>
+
+<!-- Header -->
+<div class="consultorio-header">
+  <div class="consultorio-header-content">
+    <h1>{{ 'Clínica Saúde Premium' }}</h1>
+    <p>{{ 'Cardiologia, Clínica Geral, Pediatria' }}</p>
+  </div>
+</div>
+
+<!-- Seção 1: Hero -->
+<div class="consultorio-hero">
+  <div class="consultorio-container">
+    <h2>Seu bem-estar é nossa prioridade</h2>
+    <p>Atendimento médico de qualidade, com profissionais experientes e modernos equipamentos</p>
+
+    <!-- Formulário de Agendamento -->
+    <div class="consultorio-form">
+      <h3>Agende seu atendimento</h3>
+      <form id="consultorio-form" method="POST" action="/cart/add">
+        <input
+          type="email"
+          name="email"
+          placeholder="seu@email.com"
+          id="consultorio-email"
+          required
+        />
+        <input
+          type="tel"
+          name="phone"
+          placeholder="(11) 99999-9999"
+          id="consultorio-phone"
+          required
+        />
+        <button type="submit" id="consultorio-btn">Solicitar Agendamento</button>
+        <div id="consultorio-msg" class="consultorio-success" style="display:none;">✓ Entraremos em contato em breve!</div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Seção 2: Diferenciais -->
+<div class="consultorio-benefits">
+  <div class="consultorio-container">
+    <h2>Por que nos escolher?</h2>
+
+    <div class="consultorio-cards">
+      <div class="consultorio-card">
+        <div class="consultorio-card-icon">⏱️</div>
+        <h3>Agendamento Rápido</h3>
+        <p>Marque sua consulta em poucos minutos. Oferecemos horários flexíveis para sua comodidade.</p>
+      </div>
+
+      <div class="consultorio-card">
+        <div class="consultorio-card-icon">❤️</div>
+        <h3>Atendimento Humanizado</h3>
+        <p>Profissionais dedicados que tratam você com empatia e atenção personalizada.</p>
+      </div>
+
+      <div class="consultorio-card">
+        <div class="consultorio-card-icon">🛡️</div>
+        <h3>Equipamentos Modernos</h3>
+        <p>Tecnologia de ponta para diagnósticos precisos e tratamentos eficazes.</p>
+      </div>
+
+      <div class="consultorio-card">
+        <div class="consultorio-card-icon">👥</div>
+        <h3>Equipe Experiente</h3>
+        <p>Médicos especialistas com anos de experiência no atendimento clínico.</p>
+      </div>
+    </div>
+
+    <!-- CTA Secundário -->
+    <div class="consultorio-cta-section">
+      <h3>Não deixe para depois</h3>
+      <p>Agende sua consulta agora e cuide da sua saúde</p>
+      <button onclick="document.getElementById('consultorio-email').focus(); window.scrollTo({top: 0, behavior: 'smooth'});">
+        Agendar Agora
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="consultorio-footer">
+  <div class="consultorio-footer-content">
+    <p class="consultorio-footer-name">{{ 'Clínica Saúde Premium' }}</p>
+    <p class="consultorio-footer-specialty">{{ 'Cardiologia, Clínica Geral, Pediatria' }}</p>
+    <p class="consultorio-footer-copy">© 2024 Todos os direitos reservados</p>
+  </div>
+</div>
+
+<script>
+  document.getElementById('consultorio-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById('consultorio-email').value;
+    const phone = document.getElementById('consultorio-phone').value;
+
+    if (email && phone) {
+      // Aqui você pode integrar com um serviço de email (Klaviyo, Mailchimp, etc)
+      // Para agora, apenas mostra mensagem de sucesso
+      document.getElementById('consultorio-msg').style.display = 'block';
+      document.getElementById('consultorio-btn').style.display = 'none';
+
+      // Reseta após 3 segundos
+      setTimeout(() => {
+        document.getElementById('consultorio-form').reset();
+        document.getElementById('consultorio-msg').style.display = 'none';
+        document.getElementById('consultorio-btn').style.display = 'block';
+      }, 3000);
+    }
+  });
+</script>

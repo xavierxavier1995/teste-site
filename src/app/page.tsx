@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Heart, Clock, Shield, Users } from 'lucide-react'
 
 // Gerar consultório aleatório
@@ -11,12 +11,15 @@ const clinics = [
   { name: 'Clínica Integral Health', specialty: 'Dermatologia, Estética' },
 ]
 
-const clinic = clinics[Math.floor(Math.random() * clinics.length)]
-
 export default function Home() {
+  const [clinic, setClinic] = useState<typeof clinics[0] | null>(null)
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [submitted, setSubmitted] = useState(false)
+
+  useEffect(() => {
+    setClinic(clinics[Math.floor(Math.random() * clinics.length)])
+  }, [])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -35,8 +38,8 @@ export default function Home() {
       {/* Header */}
       <header className="bg-blue-600 text-white py-4">
         <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">{clinic.name}</h1>
-          <p className="text-blue-100">{clinic.specialty}</p>
+          <h1 className="text-2xl font-bold">{clinic?.name || 'Carregando...'}</h1>
+          <p className="text-blue-100">{clinic?.specialty || ''}</p>
         </div>
       </header>
 
@@ -131,7 +134,8 @@ export default function Home() {
             <p className="text-lg mb-6">Agende sua consulta agora e cuide da sua saúde</p>
             <button
               onClick={() => {
-                document.querySelector('input[type="email"]')?.focus()
+                const input = document.querySelector('input[type="email"]') as HTMLInputElement
+                input?.focus()
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }}
               className="bg-white text-blue-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition inline-block"
@@ -145,8 +149,8 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-8">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <p className="mb-2">{clinic.name}</p>
-          <p className="text-gray-400 mb-4">{clinic.specialty}</p>
+          <p className="mb-2">{clinic?.name || 'Consultório Médico'}</p>
+          <p className="text-gray-400 mb-4">{clinic?.specialty || ''}</p>
           <p className="text-gray-500 text-sm">© 2024 Todos os direitos reservados</p>
         </div>
       </footer>
